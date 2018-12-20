@@ -28,9 +28,11 @@ def create_app(config_name):
     # register blueprints
     from .admin import admin as admin_bp
     from .home import home as home_bp
+    from .auth import auth as auth_bp
 
     app.register_blueprint(admin_bp, url_prefix="/admin")
     app.register_blueprint(home_bp)
+    app.register_blueprint(auth_bp)
 
     """ global filters used in Jinja2 template """
     # date formatter

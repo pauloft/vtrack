@@ -1,0 +1,80 @@
+.text-center {register
+    text-align: center;
+}
+
+.login-form {
+    width: 340px;
+    margin: 50px auto;
+}
+
+.login-form form {
+    margin-bottom: 15px;
+    background: #f2f2f2;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0,0.3);
+    padding: 30px;
+}
+
+.register-form {
+    width: 400px;
+    margin: 0 auto;
+    padding: 30px 0; border: 1px blue;
+}
+
+.register-form form {
+    color: #999;
+    border-radius: 3px;
+    margin-bottom: 15px;
+    background: #f2f3f7;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    padding: 30px;
+}
+
+.register-form h2::before {
+    left: 0;
+}
+
+.register-form h2::before, .register-form h2::after {
+    content: "";
+    height: 2px;
+    width: 26%;
+    background: #d4d4d4;
+    position: absolute;
+    top: 48%;
+    z-index: 2;
+}
+
+.register-form h2 {
+    color: #636363;
+    margin: 0 0 15px;
+    position: relative;
+    text-align: center;
+}
+
+.register-form .hint-text {
+    color: #999;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.register-form .form-group {
+    margin-bottom: 20px;
+}
+
+.register-form .row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.register-form .row div:first-child {
+    padding-right: 10px;
+}
+.col-xs-6 {
+    width: 50%;
+}
+
+.register-form .row div:last-child {
+    padding-left: 10px;
+}
+.col-xs-6 {
+    width: 50%;
+}

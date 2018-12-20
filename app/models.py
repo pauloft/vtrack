@@ -9,8 +9,8 @@ from app import db, login_manager
 
 # configure a user loader function for Flask-Login
 @login_manager.user_loader
-def load_user(id):
-    return User.query.get(id)
+def load_user(user_id):
+    return User.query.get(user_id)
 
 
 class User(db.Model, UserMixin):
@@ -21,8 +21,12 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
     image_file = db.Column(db.String(20), default="default.jpg")
+    is_admin = db.Column(db.Boolean, default=False)
 
     def set_password(self, password):
+        """ 
+        Set password to a hashed value
+        """
         self.password_hash = generate_password_hash(password)
 
     def check_password(self, password):

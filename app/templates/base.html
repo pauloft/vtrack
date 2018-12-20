@@ -1,6 +1,9 @@
 {% extends 'bootstrap/base.html' %}
 {% block title %} {% if title %} {{ title }} - VTrack {% endif %} {% endblock %}
-
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/vtrack.css') }}">
+{% endblock %}
 {% block navbar %}
 <nav class="navbar navbar-default">
     <div class="container">
@@ -16,24 +19,33 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
+                {% if current_user.is_authenticated %}
+                {% if current_user.is_admin %}
+                <li><a href="{{ url_for('home.admin_dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('auth.register') }}">Register User</a></li>
+                {% else %}
                 <li>
-                    <a href="#">Home</a>
+                    <a href="{{ url_for('home.dashboard') }}">Dashboard</a>
                 </li>
-                <li>
-                    <a href="#">Dashboard</a>
-                </li>
+                {% endif %}
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Vehicle<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Listing</a></li>
-                        <li><a href="#">Equipment</a></li>
+                        <li><a href="#">List All Vehicles</a></li>
+                        <li><a href="#">Vehicle Equipment</a></li>
                     </ul>
                 </li>
+                {% else %}
+
+                {% endif %}
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Item 1</a></li>
-                <li><a href="#">Item 2</a></li>
-                <li><a href="#">Item 3</a></li>
+                {% if current_user.is_authenticated %}
+                <li><a><i class="fa fa-user"></i> Hi, {{ current_user.username.upper() }}!</a></li>
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.login') }}"></a></li>
+                {% endif %}
             </ul>
         </div>
     </div>
