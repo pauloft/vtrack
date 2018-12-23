@@ -2,13 +2,11 @@
 
 {% extends "base.html" %}
 {% block app_content %}
-<h1>{{ title }}</h1>
-<hr class="intro-divider">
 <div class="row">
     <div class="login-form">
         <form action="{{ url_for('auth.login') }}" method="POST" role="form">
             {{ form.csrf_token }}
-            <h2 class="text-center">Log In</h2>
+            <h2 class="text-center">{{ title }}</h2>
             <div class="form-row">
                 <div class="form-group">
                     {{ form.email(class="form-control", placeholder="Username") }}
@@ -18,6 +16,13 @@
                 </div>
                 <div class="form-group">
                     {{ form.submit(class="form-control btn btn-primary") }}
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <small class="text-muted ml-2">
+                        <a href="{{ url_for('auth.request_reset') }}">Forgot password?</a>
+                    </small>
                 </div>
             </div>
         </form>

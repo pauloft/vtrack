@@ -1,0 +1,54 @@
+<!-- app/templates/auth/register.html -->
+
+{% extends "base.html" %}
+{% block app_content %}
+<div class="media row">
+    <div class="col-sm-2">
+        <img src="{{ image_file }}" alt="" class="rounded-circle account-img">
+    </div>
+    <div class="col-sm-5">
+        <div class="media-body">
+            <h2 class="account-heading">{{ current_user.username }}</h2>
+            <p class="text secondary">{{ current_user.email }}</p>
+        </div>
+    </div>
+    <div class="col-sm-5">
+        <h2>{{ title }} <button type="button" id="update-account" class="btn btn-primary pull-right" data-toggle="modal"
+                data-target="#modal-update-account-form"><span class="glyphicon glyphicon-pencil"></span>&nbsp;&nbsp;Update
+                My
+                Profile</button></h2>
+    </div>
+</div>
+<hr class="intro-divider">
+
+<h3>REMEMBER: Forms with FileField MUST have this:</h3>
+<p>enctype="multipart/form-data"</p>
+
+<div class="modal fade" id="modal-update-account-form">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">User Profile Form</h4>
+            </div>
+            <form action="" method="post" enctype="multipart/form-data" role="form">
+                <div class="modal-body">
+                    {{ form.csrf_token }}
+                    <div class="form-row">
+                        <div class="form-group col-sm-5">{{ form.username(class="form-control", placeholder="Username")
+                            }}</div>
+                        <div class="form-group col-sm-7">{{ form.email(class="form-control", placeholder="Email") }}</div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">{{ form.picture.label }} {{ form.picture(class="form-control")}}</div>
+                    </div>
+                </div><!-- //modal body -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div><!-- //modal-update-account-form -->
+{% endblock %}
