@@ -90,6 +90,13 @@
 .register-form .row div:last-child {
     padding-left: 10px;
 }
+
 .col-xs-6 {
     width: 50%;
+}
+
+.card {
+    padding: 1.25em !important;
+    margin-top: 1.25em;
+    border-radius: 8px;
 }

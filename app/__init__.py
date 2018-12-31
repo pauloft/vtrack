@@ -5,6 +5,9 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_mail import Mail
 
+# debugging
+# from flask_debugtoolbar import DebugToolbarExtension
+
 from config import app_config
 
 db = SQLAlchemy()
@@ -27,16 +30,23 @@ def create_app(config_name):
     login_manager.login_view = "auth.login"
     login_manager.login_message_category = "info"
 
+    # debugging stuff
+    # tb = DebugToolbarExtension(app)
+
     from app import models
 
     # register blueprints
     from .admin import admin as admin_bp
     from .home import home as home_bp
     from .auth import auth as auth_bp
+    from .equipment import equipment as equipment_bp
+    from .vehicles import vehicles as vehicles_bp
 
     app.register_blueprint(admin_bp, url_prefix="/admin")
     app.register_blueprint(home_bp)
     app.register_blueprint(auth_bp)
+    app.register_blueprint(equipment_bp, url_prefix="/equipment")
+    app.register_blueprint(vehicles_bp, url_prefix="/vehicles")
 
     """ global filters used in Jinja2 template """
     # date formatter

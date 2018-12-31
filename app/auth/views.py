@@ -23,11 +23,13 @@ def register():
     """ Register a new user to the database using the registration form
     """
     form = RegistrationForm()
-    if form.validate_on_submit():
+    # if form.validate_on_submit():
+    if request.method == "POST":
         # create the user
         user = User(username=form.username.data, email=form.email.data)
         # set user's password
         user.set_password(form.password.data)
+        print(user.password_hash)
         # add user to the database
         db.session.add(user)
         db.session.commit()

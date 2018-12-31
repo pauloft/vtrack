@@ -23,4 +23,4 @@ def dashboard():
 @login_required
 def admin_dashboard():
     """ Render dashboard on the / route """
-    return render_template("home/admin_dashboard.html", title="Admin Dashboard")
+    return render_template("home/admin_dashboard.html", title="Your Dashboard")

@@ -1,0 +1,30 @@
+<div class="card text-white bg-success mb-3">
+    <img src="" alt="" class="card-img-top">
+    {% if vehicle.pictures %}
+    <div class="card-header thumb text-center">
+        {% set p = vehicle.pictures.first().filepath %}
+        {% if p %}
+        <img src="{{url_for('static', filename='vehicle_imgs/thumbs/' + p)}}" alt="">
+        {% else %}
+        <img src="" alt="">
+        {% endif %}
+    </div>
+    {% else %}
+    <div class="card-header">{{vehicle.vin}}</div>
+    {% endif %}
+    <div class="card-body">
+        <h3 class="card-title">{{vehicle.year}} {{vehicle.make}} {{vehicle.model}}</h3>
+        <p class="card-text">TAG: {{vehicle.tag}}</p>
+        <p class="card-text">VIN: {{vehicle.vin}}</p>
+    </div>
+    <div class="card-footer">
+        {% if current_user.is_admin %}
+        <a data-id="{{vehicle.id}}" class="btn btn-primary pull-right editVehicle"><span class="glyphicon glyphicon-pencil"></span>
+            Edit</a>
+        <a href="{{url_for('vehicles.delete', id=vehicle.id)}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this {{vehicle.year}} {{vehicle.make}} {{vehicle.model}}?')"><span
+                class="glyphicon glyphicon-remove"></span> Del</a>
+        {% else %}
+        <div class="text-center"><a href="#" class="btn btn-warning">View Vehicle</a></div>
+        {% endif %}
+    </div>
+</div>
