@@ -3,7 +3,6 @@
 from flask import (
     render_template,
     redirect,
-    abort,
     current_app,
     request,
     flash,
@@ -11,7 +10,7 @@ from flask import (
     jsonify,
 )
 from werkzeug.utils import secure_filename
-from flask_login import current_user, login_required
+from flask_login import login_required
 
 from . import vehicles
 from app.vehicles.forms import VehicleForm
@@ -101,8 +100,7 @@ def delete(id):
 @vehicles.route("/getVehicleById", methods=["POST"])
 @login_required
 def getVehicleById():
-    """ 
-    fetch a vehicle record from the database so it can be used to populate form fields
+    """ fetch a vehicle record from the database so it can be used to populate form fields
     """
     id = request.form["id"]
     vehicle = Vehicle.query.get(id)
@@ -118,3 +116,12 @@ def getVehicleById():
         )
     )
 
+
+@vehicles.route('/album/<int:id>')
+@login_required
+def album(id):
+    pics = Vehicle.query.filter_by(id=id).first().pictures
+
+    pictures = [p.filepath for p in pics]
+
+    return render_template('vehicles/album.html', title="Album", pictures=pictures)

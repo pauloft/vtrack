@@ -1,0 +1,11 @@
+<!-- app/templates/vehicles/albun.html -->
+{% extends "base.html" %}
+{% block app_content %}
+
+{{ title }}
+
+{% for picture in pictures %}
+<p>{{picture}}</p>
+{% endfor %}
+
+{% endblock %}

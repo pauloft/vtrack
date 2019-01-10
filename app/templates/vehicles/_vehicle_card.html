@@ -20,11 +20,14 @@
     <div class="card-footer">
         {% if current_user.is_admin %}
         <a data-id="{{vehicle.id}}" class="btn btn-primary pull-right editVehicle"><span class="glyphicon glyphicon-pencil"></span>
-            Edit</a>
-        <a href="{{url_for('vehicles.delete', id=vehicle.id)}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this {{vehicle.year}} {{vehicle.make}} {{vehicle.model}}?')"><span
+            Edit</a>&nbsp;&nbsp;&nbsp;&nbsp;
+        <span style="text-align: center"><a href="{{url_for('vehicles.album', id=vehicle.id)}}" class="btn btn-warning">View
+                Vehicle</a></span>
+        <a href="{{url_for('vehicles.delete', id=vehicle.id)}}" class="btn btn-danger pull-left" onclick="return confirm('Are you sure you want to delete this {{vehicle.year}} {{vehicle.make}} {{vehicle.model}}?')"><span
                 class="glyphicon glyphicon-remove"></span> Del</a>
         {% else %}
-        <div class="text-center"><a href="#" class="btn btn-warning">View Vehicle</a></div>
+        <div class="text-center"><a href="{{url_for('vehicles.album', id=vehicle.id)}}" class="btn btn-warning">View
+                Vehicle</a></div>&nbsp;&nbsp;
         {% endif %}
     </div>
 </div>

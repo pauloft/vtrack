@@ -17,8 +17,8 @@ class Config(object):
     MAIL_PASSWORD = os.environ.get("EMAIL_PASS")
 
     # picture and thumbnail folders (for profiles, Vehicles, and equipment)
-    PROFILE_IMAGE_FOLDER = os.path.join(basedir, "static/profile_thumbs")
-    EQUIPMENT_IMAGE_FOLDER = os.path.join(basedir, "static/equip_imgs")
+    PROFILE_IMAGE_FOLDER = os.path.join(basedir, "static", "profile_thumbs")
+    EQUIPMENT_IMAGE_FOLDER = os.path.join(basedir, "static", "equip_imgs")
     VEHICLE_IMAGE_FOLDER = os.path.join(basedir, "app", "static", "vehicle_imgs")
 
 

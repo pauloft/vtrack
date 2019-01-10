@@ -6,6 +6,7 @@ from flask import url_for, current_app
 from flask_mail import Message
 from app import mail
 
+
 # processing specifically for profile images
 def save_picture(form_picture, folder="static/profile_thumbs"):
     random_hex = secrets.token_hex(8)
@@ -28,12 +29,13 @@ def send_reset_email(user):
     msg.body = f"""To reset your password, visit the following link:
 {url_for('auth.reset_password', token=token, _external=True)}
 
-If you did not make this request then simply ignore this email and no changes will be made.
+If you did not make this request then simply ignore this email and no changes
+will be made.
 """
     mail.send(msg)
 
 
-""" 
+"""
 Processing for pictures
 """
 

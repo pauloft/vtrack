@@ -9,7 +9,7 @@ from . import home
 @home.route("/")
 def homepage():
     """ Render homepage on the / route """
-    return render_template("home/index.html", title="Welcome!")
+    return render_template("home/index.html", title="Welcome to VTrack!")
 
 
 @home.route("/dashboard")
